@@ -16,3 +16,5 @@ services:
     expose:
       - '3306'
 
+volumes:
+  db_data: {}
