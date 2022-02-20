@@ -1,4 +1,3 @@
-import time, auth
 from flask import Flask
 
 from auth import credentials
