@@ -1,6 +1,6 @@
 from flask import Flask
 
-from auth import credentials
+from auth.auth import credentials
 
 app = Flask(__name__)
 

@@ -1,0 +1,9 @@
+FROM mysql:5.7
+ENV MYSQL_DATABASE=data \
+    MYSQL_ROOT_PASSWORD=P@ssw0rd
+
+ADD init.sql /docker-entrypoint-initdb.d
+EXPOSE 3306
+
+WORKDIR /
+RUN mkdir -p /data
