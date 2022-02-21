@@ -7,7 +7,13 @@ def credentials():
         info = json.loads(info)
 
     # Basic authentication
-    if info['user'] == 'admin' and info['password'] == 'potato':
+    if info['username'] == 'Jaspreet' and info['password'] == 'Password':
+        print("1")
+        return 1
+    elif info['username'] == 'Jordan' and info['password'] == 'Password':
+        print("1")
+        return 1
+    elif info['username'] == 'Arthur' and info['password'] == 'Password':
         print("1")
         return 1
     else:
