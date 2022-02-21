@@ -9,11 +9,8 @@ from sqlalchemy.ext.declarative import declarative_base
 #drop_tables
 #create_tables
 
-with open('app_conf.yaml', 'r') as f:
-    app_config = yaml.safe_load(f.read())
-
 BASE = declarative_base()
-ENGINE = create_engine("mysql+pymysql://admin:potato@localhost/data")
+ENGINE = create_engine("mysql+pymysql://Jordan:Password@localhost/data")
 BASE.metadata.bind = ENGINE
 SESSION = sessionmaker(bind=ENGINE)
 
@@ -24,14 +21,15 @@ def process():
     
     var = session.query(info).first()
 
+    # Hash value
     count = hash(var)
 
     # Open MongoDB session
     client = pymongo.MongoClient("mongodb://localhost:27017")
-    db = client["data"]
-    col = db["info"]
+    db = client["data"] # Select database
+    col = db["info"]# Select table
 
-    x = col.insert_one(count)
+    x = col.insert_one(count) # Insert hash into table
 
 app = connexion.FlaskApp(__name__, specification_dir='')
 
