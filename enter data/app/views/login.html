@@ -1,0 +1,48 @@
+<form name="loginForm" method="post" action="index.html">
+    <table width="20%" bgcolor="0099CC" align="center">
+      
+        <tr>
+      <td colspan=2><center><font size=4><b>Login</b></font></center></td>
+      </tr>
+      
+      <tr>
+      <td><input type="text" placeholder="Username" style="font-family: Roboto, sans-serif; outline: 1; background: #f2f2f2; width: 100%; border: 0; margin: 0 0 15px; padding: 15px; box-sizing: border-box; font-size: 14px;" size=25 name="user"></td>
+      </tr>
+      
+      <tr>
+      <td><input type="Password" placeholder="Password" style="font-family: Roboto, sans-serif; outline: 1; background: #f2f2f2; width: 100%; border: 0; margin: 0 0 15px; padding: 15px; box-sizing: border-box; font-size: 14px;" size=25 name="pass"></td>
+      </tr>
+      
+      <tr>
+      <td><input type="submit" onclick="return check(this.form)" style="font-family: Roboto, sans-serif; text-transform: uppercase; outline: 0; background: #4CAF50; width: 100%; border: 0; padding: 15px; color: #ffffff; font-size: 14px; cursor: pointer;"></td>
+      </tr>
+      <h3 align="center">Login for show data page</h3>
+      </table>  
+      </form>
+     <script lang="javascript">
+       function check(form)
+      {
+          var people = [
+              {
+                  username: "Jaspreet",
+                  password: "Password" 
+              },
+              {
+                  username: "Jordan",
+                  password: "Password"
+              }
+          ]
+          for (i = 0; i < people.length; i++) {
+              if (form.user.value == people[i].username && form.pass.value == people[i].password) {
+                console.log("logged in!")
+                return true;
+              }
+              else {
+                alert("Wrong password/username!")
+                console.log("wrong password/username!")
+                return false;
+              }
+          }
+          
+      }
+     </script>
