@@ -10,7 +10,7 @@ from sqlalchemy.ext.declarative import declarative_base
 #create_tables
 
 BASE = declarative_base()
-ENGINE = create_engine("mysql+pymysql://Jordan:Password@localhost/data")
+ENGINE = create_engine("mysql+pymysql://Jordan:Password@mysql/data") # Name of compose file
 BASE.metadata.bind = ENGINE
 SESSION = sessionmaker(bind=ENGINE)
 
