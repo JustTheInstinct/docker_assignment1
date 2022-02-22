@@ -25,7 +25,7 @@ def process():
     count = hash(var)
 
     # Open MongoDB session
-    client = pymongo.MongoClient("mongodb://localhost:27017")
+    client = pymongo.MongoClient("mongodb://host.docker.internal:27017")
     db = client["data"] # Select database
     col = db["info"]# Select table
 

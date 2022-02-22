@@ -1,0 +1,18 @@
+version: 1
+
+mysql:
+  user: root
+  password: P@ssw0rd
+  hostname: localhost
+  port:
+    - "3306:3306"
+  db: data
+
+mongodb:
+  user: root
+  password: P@ssw0rd
+  hostname: localhost
+  port:
+    - "27017:27017"
+  db: data
+  collection: info
