@@ -1,20 +1,8 @@
 version: '3.3'
 
 services:
-  app:
-    container_name: project1_app
-    build: ./app
-    depends_on:
-    - mysql
-    - mongo
-    ports:
-      - "5000:5000"
-
-
   mysql:
     image: mysql:5.7
-    #container_name: project1_mysql
-    #build: ./mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'P@ssw0rd'
@@ -57,64 +45,3 @@ services:
 volumes:
   prj-mongodb-data:
   db_data:
-
-# Extra stuff for reference
-  # mysql:
-    # image: mysql:5.7
-    # volumes:
-    #   - db_data:/var/lib/mysql
-    # restart: always
-    # environment:
-    #   MYSQL_ROOT_PASSWORD: P@ssw0rd
-    #   MYSQL_DATABASE: db
-    #   MYSQL_USER: user
-    #   MYSQL_PASSWORD: P@ssw0rd
-    # ports:
-    #   - '3306:3306'
-    # expose:
-    #   - '3306'
-
-  # mongodb:
-  #   image: mongo:latest
-  #   container_name: mongodb
-  #   environment:
-  #     - MONGO_INITDB_ROOT_USERNAME=root
-  #     - MONGO_INITDB_ROOT_PASSWORD=P@ssw0rd
-  #   volumes:
-  #     - mongodb-data:/data/db
-  #   networks:
-  #     - mongodb_network
-  #   ports:
-  #     - "27017:27017"
-  #   healthcheck:
-  #     test: echo 'db.runCommand("ping").ok' | mongo 10.10.10.60:27017/test --quiet # Might have to change this
-  #     interval: 30s
-  #     timeout: 15s
-  #     retries: 3
-  #     start_period: 30s
-  #   restart: unless-stopped
-
-  # mongo-express:
-  #   image: mongo-express
-  #   container_name: mongo-express
-  #   environment:
-  #     - ME_CONFIG_MONGODB_SERVER=mongodb
-  #     - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
-  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=P@ssw0rd
-  #     - ME_CONFIG_BASICAUTH_USERNAME=admin
-  #     - ME_CONFIG_BASICAUTH_PASSWORD=admin123
-  #   volumes:
-  #     - mongodb-data
-  #   depends_on:
-  #     - mongodb
-  #   networks:
-  #     - mongodb_network
-  #   ports:
-  #     - "8081:8081"
-  #   healthcheck:
-  #     test: wget --quiet --tries=3 --spider http://admin:admin123@10.10.10.60:8081 || exit 1
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 3
-  #   restart: unless-stopped
