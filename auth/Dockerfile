@@ -4,7 +4,7 @@ EXPOSE 5000
 WORKDIR /
 
 COPY requirements.txt /
-RUN apt-get install pip3
+RUN apt install pip3
 RUN pip install -r requirements.txt
 
 COPY *.py /
