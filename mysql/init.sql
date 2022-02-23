@@ -1,5 +1,6 @@
-CREATE DATABASE data;
+CREATE DATABASE data IF EXISTS;
 USE data;
+
 CREATE TABLE info (
     words VARCHAR(100)
 )
