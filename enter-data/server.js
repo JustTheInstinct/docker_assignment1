@@ -68,7 +68,7 @@ app.post('/input', (req,res) => {
         if (err) throw err;
 
         console.log("Connected!");
-        var sql = "INSERT INTO info (words) VALUES " + age;
+        var sql = "INSERT INTO info (words) VALUES (" + age +")";
 
         database.query(sql, function (err, result) {
           if (err) throw err;
