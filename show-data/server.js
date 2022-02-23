@@ -24,13 +24,14 @@ const bodyParser = require('body-parser');
 
 function checkauth(username, password){
     var login_info = {'username': username, 'password': password};
-    var clientServerOptions = {
+    var options = {
         uri: 'http://auth:5000/',
         body: login_info,
         method: 'POST',
         json: true
     }
   
+    var sendrequest =  request(options)
         // The parsedBody contains the data
         // sent back from the Flask server 
         .then(function (parsedBody) {

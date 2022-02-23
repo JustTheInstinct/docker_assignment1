@@ -15,13 +15,13 @@ const database = mysql.createConnection({
 
 function checkauth(username, password){
     var login_info = {'username': username, 'password': password};
-    var clientServerOptions = {
+    var options = {
         uri: 'http://auth:5000/',
         body: login_info,
         method: 'POST',
         json: true
     }
-    //var sendrequest = await request(options)
+    var sendrequest =  request(options)
   
         // The parsedBody contains the data
         // sent back from the Flask server 

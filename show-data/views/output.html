@@ -15,7 +15,7 @@
         var mongo = require('mongodb');
         var MongoClient = require('mongodb').MongoClient;
 
-        var url = "mongodb://mongodb:27017/";
+        var url = "mongodb:http//mongodb:27017/";
 
         const content = document.getElementById("content")
 
@@ -25,7 +25,7 @@
             dbo.collection("info").find({}).toArray(function(err, result) {
                 if (err) throw err;
                 console.log(result);
-                content.innerHTML(result.words)
+                content.innerHTML(result);
                 db.close();
             });
         });
