@@ -14,20 +14,31 @@ const database = mysql.createConnection({
 
 
 function checkauth(username, password){
-    // var login_info = {'username': username, 'password': password};
-    // var clientServerOptions = {
-    //     uri: 'http://auth:5000',
-    //     body: login_info,
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // }
-    // request(clientServerOptions, function (error, response) {
-    //     console.log(error,response.body);
-    //     console.log(response);
-    // });
-    return 1;
+    var login_info = {'username': username, 'password': password};
+    var clientServerOptions = {
+        uri: 'http://auth:5000/',
+        body: login_info,
+        method: 'POST',
+        json: true
+    }
+    var sendrequest = await request(options)
+  
+        // The parsedBody contains the data
+        // sent back from the Flask server 
+        .then(function (parsedBody) {
+            console.log(parsedBody);
+              
+            // You can do something with
+            // returned data
+            let result;
+            result = parsedBody['result'];
+            console.log("auth function returned: ", result);
+            return result;
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+    // return 1;
 
 }
 
