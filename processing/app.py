@@ -12,7 +12,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 #create_tables
 
 #Environments
-with open('app+conf.yaml', 'r') as conf:
+with open('app_conf.yaml', 'r') as conf:
     app_config = yaml.safe_load(conf.read())
 
 mysql_e = app_config["mysql"]
