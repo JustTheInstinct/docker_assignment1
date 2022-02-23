@@ -6,11 +6,8 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: P@ssw0rd
       MYSQL_DATABASE: data
-      MYSQL_USER: root
-      MYSQL_PASSWORD: P@ssw0rd
     ports:
       - '33061:3306'
     command: --init-file /mysql/init.sql
