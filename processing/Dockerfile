@@ -5,6 +5,7 @@ WORKDIR /app
 
 COPY requirements.txt /app
 COPY . /app
-RUN apt install pip3
+RUN apt-get update
+RUN apt-get install -y python3-pip
 RUN pip install -r requirements.txt
 CMD python app.py
