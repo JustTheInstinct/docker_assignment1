@@ -7,16 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h2 style="text-align:center;color:darkblue;">Choose a file to be uploaded to the database</h2>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <label for="user_input">enter text data in form of "name, age, height"</label>
-    <br>
-    <input style="text-align: center; " type="text" id="user_input" name="avatar">
-
+<div>
+    <h2 style="text-align:center;color:darkblue;">Please enter your age in our database</h2>
+</div>
+<br>
+<br>
+<br>
+<br>
+<form name="ageForm" action="/input" method="POST">
+    <label for="fname">Please enter your age</label><br>
+    <input type="text" name="age" required><br><br>
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>
