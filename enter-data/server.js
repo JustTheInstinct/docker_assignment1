@@ -21,7 +21,7 @@ function checkauth(username, password){
         method: 'POST',
         json: true
     }
-    var sendrequest = await request(options)
+    //var sendrequest = await request(options)
   
         // The parsedBody contains the data
         // sent back from the Flask server 
@@ -68,7 +68,7 @@ app.post('/input', (req,res) => {
 
         console.log("Connected!");
         var sql = "INSERT INTO info (words) VALUES " + age;
-        
+
         database.query(sql, function (err, result) {
           if (err) throw err;
           console.log("1 record inserted");
