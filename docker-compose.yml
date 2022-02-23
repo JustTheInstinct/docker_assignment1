@@ -1,6 +1,63 @@
 version: '3.3'
 
 services:
+  app:
+    container_name: project1_app
+    build: ./app
+    depends_on:
+    - mysql
+    - mongo
+    ports:
+      - "5000:5000"
+
+
+  mysql:
+    container_name: project1_mysql
+    build: ./mysql
+    ports:
+      - 3306
+    volumes:
+      - db_data:/data
+  
+  auth:
+    container_name: project1_auth
+    build: ./auth
+    ports:
+      - 5000
+  enter-data:
+    container_name: project1_enter
+    build : ./enter-data
+    ports: 
+      - 8000
+  
+  show-data:
+    container_name: project1_show
+    build : ./show-data
+    ports: 
+      - 9000
+   
+
+volumes:
+  mongodb-data:
+    name: mongodb-data
+  db_data: {}
+
+# Extra stuff for reference
+  # mysql:
+    # image: mysql:5.7
+    # volumes:
+    #   - db_data:/var/lib/mysql
+    # restart: always
+    # environment:
+    #   MYSQL_ROOT_PASSWORD: P@ssw0rd
+    #   MYSQL_DATABASE: db
+    #   MYSQL_USER: user
+    #   MYSQL_PASSWORD: P@ssw0rd
+    # ports:
+    #   - '3306:3306'
+    # expose:
+    #   - '3306'
+
   # mongodb:
   #   image: mongo:latest
   #   container_name: mongodb
@@ -45,57 +102,3 @@ services:
   #     timeout: 10s
   #     retries: 3
   #   restart: unless-stopped
-
-  app:
-    container_name: project1_app
-    build: ./app
-    depends_on:
-    - mysql
-    - mongo
-    ports:
-      - "5000:5000"
-
-  # mysql:
-    # image: mysql:5.7
-    # volumes:
-    #   - db_data:/var/lib/mysql
-    # restart: always
-    # environment:
-    #   MYSQL_ROOT_PASSWORD: P@ssw0rd
-    #   MYSQL_DATABASE: db
-    #   MYSQL_USER: user
-    #   MYSQL_PASSWORD: P@ssw0rd
-    # ports:
-    #   - '3306:3306'
-    # expose:
-    #   - '3306'
-  mysql:
-    container_name: project1_mysql
-    build: ./mysql
-    ports:
-      - 3306
-    volumes:
-      - db_data:/data
-  
-  auth:
-    container_name: project1_auth
-    build: ./auth
-    ports:
-      - 5000
-  enter-data:
-    container_name: project1_enter
-    build : ./enter-data
-    ports: 
-      - 8000
-  
-  show-data:
-    container_name: project1_show
-    build : ./show-data
-    ports: 
-      - 9000
-   
-
-volumes:
-  mongodb-data:
-    name: mongodb-data
-  db_data: {}
