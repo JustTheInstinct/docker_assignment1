@@ -4,3 +4,4 @@ SQLAlchemy
 pymongo
 swagger-ui-bundle
 apscheduler
+PyMySql
