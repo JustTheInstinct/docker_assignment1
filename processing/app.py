@@ -51,7 +51,7 @@ def to_mongo(mysql_data):
 
     # For each item in info table, hash item, then insert
     for each in mysql_data:
-        into = hash(each)
+        into = hash(str(each))
         query = {'info': str(into)}
         table.update_one(query)
 
