@@ -8,6 +8,18 @@ var MongoClient = require('mongodb').MongoClient;
 
 var url = "mongodb://mongodb:27017/";
 
+const content = document.getElementById("content")
+
+MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("data");
+    dbo.collection("info").find({}).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        content.innerHTML(result.words)
+        db.close();
+    });
+    });
 
 
 function checkauth(username, password){
@@ -56,15 +68,10 @@ app.post('/login', async (req, res) =>{
     }
 })
 
-MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("data");
-    dbo.collection("info").find({}).toArray(function(err, result) {
-      if (err) throw err;
-      console.log(result);
-      db.close();
-    });
-  });
+
+
+
+
 
 app.listen(9000, () => {
     console.log("app running on port 9000");

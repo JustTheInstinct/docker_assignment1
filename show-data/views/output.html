@@ -8,6 +8,28 @@
 </head>
 <body>
     <h1>See the hashed values of data entered</h1>
-    
+    <div> 
+        <p id="content"> </p>
+    </div>
+    <script>
+        var mongo = require('mongodb');
+        var MongoClient = require('mongodb').MongoClient;
+
+        var url = "mongodb://mongodb:27017/";
+
+        const content = document.getElementById("content")
+
+        MongoClient.connect(url, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("data");
+            dbo.collection("info").find({}).toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+                content.innerHTML(result.words)
+                db.close();
+            });
+        });
+
+    </script>
 </body>
 </html>
