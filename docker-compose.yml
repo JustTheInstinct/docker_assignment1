@@ -10,7 +10,7 @@ services:
       MYSQL_DATABASE: data
     ports:
       - '33061:3306'
-    command: --init-file /mysql/init.sql
+    command: --init-file init.sql
     volumes:
       - db_data:/var/lib/mysql
       - ./mysql_init.sql:/mysql_init.sql
