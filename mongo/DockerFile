@@ -1,8 +1,6 @@
 FROM mongo:latest
 
-EXPOSE 8081
+ENV MONGO_INITDB_ROOT_USERNAME=root \
+    MONGO_INITDB_ROOT_PASSWORD=P@ssw0rd
+
 EXPOSE 27017
-
-RUN pip install -r requirements.txt
-
-RUN python app.py
