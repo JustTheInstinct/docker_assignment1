@@ -1,25 +1,25 @@
 const express = require('express');
-var mongo = require('mongodb');
+// var mongo = require('mongodb');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 
-var MongoClient = require('mongodb').MongoClient;
+// var MongoClient = require('mongodb').MongoClient;
 
-var url = "mongodb://mongodb:27017/";
+// var url = "mongodb://mongodb:27017/";
 
-const content = document.getElementById("content")
+// const content = document.getElementById("content")
 
-MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("data");
-    dbo.collection("info").find({}).toArray(function(err, result) {
-        if (err) throw err;
-        console.log(result);
-        content.innerHTML(result.words)
-        db.close();
-    });
-    });
+// MongoClient.connect(url, function(err, db) {
+//     if (err) throw err;
+//     var dbo = db.db("data");
+//     dbo.collection("info").find({}).toArray(function(err, result) {
+//         if (err) throw err;
+//         console.log(result);
+//         content.innerHTML(result.words)
+//         db.close();
+//     });
+// });
 
 
 function checkauth(username, password){
@@ -67,9 +67,6 @@ app.post('/login', async (req, res) =>{
         res.redirect('/login');
     }
 })
-
-
-
 
 
 
