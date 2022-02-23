@@ -36,9 +36,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/login', (req,res) => res.sendFile(path.join(__dirname + '/views/login.html')));
 
 app.get('/input', (req,res) => res.sendFile(path.join(__dirname + '/views/input.html')))
+
 app.post('/login', async (req, res) =>{
     let username = req.body.username;
     let password = req.body.password;
+
     if(checkauth(username,password) == 1){
         res.redirect('/input');
     }
@@ -49,15 +51,19 @@ app.post('/login', async (req, res) =>{
 
 app.post('/input', (req,res) => {
     let age = req.body.age;
+
     database.connect(function(err) {
         if (err) throw err;
+
         console.log("Connected!");
         var sql = "INSERT INTO info (words) VALUES " + age;
+        
         database.query(sql, function (err, result) {
           if (err) throw err;
           console.log("1 record inserted");
         });
       });
+
     res.redirect('/input');
 })
 app.listen(8000, () => {
