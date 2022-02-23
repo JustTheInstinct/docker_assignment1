@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-const request = require('request');
+const request = require('request-promise');
 const database = mysql.createConnection({
     host: 'mysql',
     port: '3306',
@@ -14,17 +14,18 @@ const database = mysql.createConnection({
 
 
 function checkauth(username, password){
+    // var login_info = {'username': username, 'password': password};
     // var clientServerOptions = {
     //     uri: 'http://auth:5000',
-    //     body: {'username': username, 'password': password},
-    //     method: 'POST',
+    //     body: login_info,
+    //     method: 'GET',
     //     headers: {
     //         'Content-Type': 'application/json'
     //     }
     // }
     // request(clientServerOptions, function (error, response) {
     //     console.log(error,response.body);
-    //     return ;
+    //     console.log(response);
     // });
     return 1;
 
