@@ -1,15 +1,16 @@
 import json, requests
 
+from flask import Flask, request
+
 result = 0
 
+app = Flask(__name__)
+
+@app.route('/', method = ['POST'])
 def credentials():
     global result
     # Function reads and store JSON dict into variable
-    info = requests.get('http://localhost:5000')
-
-    # with open('credential.json', 'r') as file:
-        # info = file.read()
-        # info = json.loads(info)
+    info = request.get_json()
 
     # Basic authentication
     if info['username'] == 'Jaspreet' and info['password'] == 'Password':
@@ -24,9 +25,7 @@ def credentials():
     else:
         print("0")
         result = 0
-
-    #requests.post('http://:')
-
+    return json.dumps({"result":result})
 
 if __name__ == "__main__":
-    credentials()
+    app.run(port=5000)
