@@ -4,28 +4,29 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const request = require('request');
-// const database = mysql.createConnection({
-//     host: 'mysql',
-//     port: '3306',
-//     user: 'root',
-//     password: 'P@ssw0rd',
-//     database: 'data'
-// });
+const database = mysql.createConnection({
+    host: 'mysql',
+    port: '3306',
+    user: 'root',
+    password: 'P@ssw0rd',
+    database: 'data'
+});
 
 // database.connect()
 function checkauth(username, password){
-    var clientServerOptions = {
-        uri: 'http://auth:5000',
-        body: {'username': username, 'password': password},
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
-    request(clientServerOptions, function (error, response) {
-        console.log(error,response.body);
-        return ;
-    });
+    // var clientServerOptions = {
+    //     uri: 'http://auth:5000',
+    //     body: {'username': username, 'password': password},
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // }
+    // request(clientServerOptions, function (error, response) {
+    //     console.log(error,response.body);
+    //     return ;
+    // });
+    return 1;
 
 }
 
@@ -39,6 +40,9 @@ app.post('/login', async (req, res) =>{
     let password = req.body.password;
     if(checkauth(username,password) == 1){
         res.redirect('/input');
+    }
+    else{
+        res.redirect('/login');
     }
 })
 
