@@ -23,7 +23,7 @@ ENGINE = create_engine("mysql+pymysql://Jordan:Password@mysql/data") # Name of c
 BASE.metadata.bind = ENGINE
 SESSION = sessionmaker(bind=ENGINE)
 
-MONGO_CLIENT = pymongo.MongoClient("mongodb://host.docker.internal:27017")
+MONGO_CLIENT = pymongo.MongoClient("mongodb://mongodb:27017/")
 
 def populate():
     mysql_data = get_mysql()
