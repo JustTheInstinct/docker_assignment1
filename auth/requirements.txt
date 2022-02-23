@@ -1,1 +1,2 @@
 Flask
+swagger_ui_bundle
