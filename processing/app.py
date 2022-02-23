@@ -1,5 +1,5 @@
 from sched import scheduler
-import yaml, json, connexion, logging.config, logging, sys, swagger_ui_bundle, requests, sqlalchemy, pymongo, hashlib#, drop_tables
+import yaml, json, connexion, logging.config, logging, sys, swagger_ui_bundle, requests, sqlalchemy, pymongo, hashlib, info#, drop_tables
 #import create_tables
 
 from connexion import NoContent
@@ -35,7 +35,7 @@ def get_mysql():
     result = []
 
     # Query info
-    query = session.query(data.info).all()
+    query = session.query(info.info).all()
 
     # Gather and append
     for each in query:
