@@ -12,12 +12,29 @@ services:
 
 
   mysql:
-    container_name: project1_mysql
-    build: ./mysql
+    image: mysql:5.7
+    #container_name: project1_mysql
+    #build: ./mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'P@ssw0rd'
     ports:
-      - 3306
+      - '33061:3306'
+    command: --init-file /mysql/init.sql
     volumes:
-      - db_data:/data
+      - db_data:/var/lib/mysql
+      - ./mysql_init.sql:/mysql_init.sql
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: P@ssw0rd
+      MONGO_INITDB_DATABASE: data
+    ports:
+      - 27017:27017
+    volumes:
+      - prj-mongodb-data:/data/db
   
   auth:
     container_name: project1_auth
@@ -38,9 +55,8 @@ services:
    
 
 volumes:
-  mongodb-data:
-    name: mongodb-data
-  db_data: {}
+  prj-mongodb-data:
+  db_data:
 
 # Extra stuff for reference
   # mysql:
