@@ -1,7 +1,6 @@
 FROM python:latest
 
 EXPOSE 8100
-
 WORKDIR /app
 
 COPY requirements.txt /app
