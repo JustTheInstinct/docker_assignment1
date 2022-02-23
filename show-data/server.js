@@ -56,7 +56,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/login', (req,res) => res.sendFile(path.join(__dirname + '/views/login.html')));
 
-app.get('/show', (req,res) => res.sendFile(path.join(__dirname + '/views/output.html')))
+app.get('/show', (req,res) => res.sendFile(path.join(__dirname + '/views/output.html')));
 
 app.post('/login', async (req, res) =>{
     let username = req.body.username;
