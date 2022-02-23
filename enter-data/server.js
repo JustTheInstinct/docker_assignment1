@@ -12,7 +12,7 @@ const database = mysql.createConnection({
     database: 'data'
 });
 
-// database.connect()
+
 function checkauth(username, password){
     // var clientServerOptions = {
     //     uri: 'http://auth:5000',
@@ -48,7 +48,16 @@ app.post('/login', async (req, res) =>{
 
 app.post('/input', (req,res) => {
     let age = req.body.age;
-    res.send(age);
+    database.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+        var sql = "INSERT INTO info (words) VALUES " + age;
+        database.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("1 record inserted");
+        });
+      });
+    res.redirect('/input');
 })
 app.listen(8000, () => {
     console.log("app running on port 8000");
