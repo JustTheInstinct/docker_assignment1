@@ -1,9 +1,12 @@
 const express = require('express');
-const mogoose = require('mongoose');
+var mongo = require('mongodb');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-const request = require('request-promise');
+
+var MongoClient = require('mongodb').MongoClient;
+
+var url = "mongodb://mongodb:27017/";
 
 
 
@@ -15,7 +18,6 @@ function checkauth(username, password){
         method: 'POST',
         json: true
     }
-    var sendrequest = await request(options)
   
         // The parsedBody contains the data
         // sent back from the Flask server 
@@ -54,6 +56,15 @@ app.post('/login', async (req, res) =>{
     }
 })
 
+MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("data");
+    dbo.collection("info").find({}).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      db.close();
+    });
+  });
 
 app.listen(9000, () => {
     console.log("app running on port 9000");
