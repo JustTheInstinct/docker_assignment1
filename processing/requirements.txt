@@ -2,4 +2,4 @@ Flask
 connexion
 SQLAlchemy
 pymongo
-swagger_ui_bundle
+swagger-ui-bundle
