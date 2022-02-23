@@ -9,7 +9,10 @@
 <body>
     <h1>See the hashed values of data entered</h1><br><br><br><br>
     <div> 
-        <p id="content"> </p>
+        <form action="/show" method="POST">
+            <p id="content"> </p>
+        </form>
+        
     </div>
     <script>
         var mongo = require('mongodb');
