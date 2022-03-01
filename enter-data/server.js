@@ -16,7 +16,7 @@ const database = mysql.createConnection({
 function checkauth(username, password){
     var login_info = {'username': username, 'password': password};
     var options = {
-        uri: 'http://auth:5000/',
+        uri: 'http://auth:5000/user',
         body: login_info,
         method: 'POST',
         json: true
@@ -33,13 +33,12 @@ function checkauth(username, password){
             let result;
             result = parsedBody['result'];
             console.log("auth function returned: ", result);
-            result = 1;
             return result;
         })
         .catch(function (err) {
             console.log(err);
         });
-    return 1;
+    return result;
 
 }
 
