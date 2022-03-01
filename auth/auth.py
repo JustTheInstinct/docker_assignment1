@@ -6,9 +6,8 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/', method = ['POST'])
+@app.route('/', methods = ['POST'])
 def credentials():
-    global result
     # Function reads and store JSON dict into variable
     info = request.get_json()
 
@@ -25,7 +24,6 @@ def credentials():
     else:
         print("0")
         result = 0
-    result = 1
     return json.dumps({"result":result})
 
 if __name__ == "__main__":
