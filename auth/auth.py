@@ -6,7 +6,7 @@ result = 0
 
 app = Flask(__name__)
 
-@app.route('/user', method = ['POST'])
+@app.route('/', method = ['POST'])
 def credentials():
     # Function reads and store JSON dict into variable
     info = request.get_json()

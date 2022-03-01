@@ -16,7 +16,7 @@ const database = mysql.createConnection({
 function checkauth(username, password){
     var login_info = {'username': username, 'password': password};
     var options = {
-        uri: 'http://auth:5000/user',
+        uri: 'http://auth:5000/',
         body: login_info,
         method: 'POST',
         json: true
