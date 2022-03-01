@@ -2,12 +2,13 @@ import json
 
 from flask import Flask, request
 
-result = 0
+
 
 app = Flask(__name__)
 
 @app.route('/', method = ['POST'])
 def credentials():
+    global result
     # Function reads and store JSON dict into variable
     info = request.get_json()
 
