@@ -13,15 +13,15 @@ const database = mysql.createConnection({
 });
 
 
-function checkauth(username, password){
+async function checkauth(username, password){
     var login_info = {'username': username, 'password': password};
     var options = {
-        uri: 'http://auth:5000/',
+        uri: 'http://auth/:5000/',
         body: login_info,
         method: 'POST',
         json: true
     }
-    var sendrequest =  request(options)
+    var sendrequest =  await request(options)
   
         // The parsedBody contains the data
         // sent back from the Flask server 
@@ -38,13 +38,11 @@ function checkauth(username, password){
         .catch(function (err) {
             console.log(err);
         });
-    return result;
-
 }
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/login', (req,res) => res.sendFile(path.join(__dirname + '/views/login.html')));
+app.get('/', (req,res) => res.sendFile(path.join(__dirname + '/views/login.html')));
 
 app.get('/input', (req,res) => res.sendFile(path.join(__dirname + '/views/input.html')))
 
@@ -56,7 +54,7 @@ app.post('/login', async (req, res) =>{
         res.redirect('/input');
     }
     else{
-        res.redirect('/login');
+        res.redirect('/');
     }
 })
 
@@ -80,4 +78,3 @@ app.post('/input', (req,res) => {
 app.listen(8000, () => {
     console.log("app running on port 8000");
 })
-
