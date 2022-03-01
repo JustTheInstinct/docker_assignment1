@@ -1,4 +1,1 @@
 Flask
-swagger-ui-bundle
-apscheduler
-PyMySql
