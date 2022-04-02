@@ -33,13 +33,12 @@ function checkauth(username, password){
             let result;
             result = parsedBody['result'];
             console.log("auth function returned: ", result);
-            result = 1;
             return result;
         })
         .catch(function (err) {
             console.log(err);
         });
-    return 1;
+    return result;
 
 }
 

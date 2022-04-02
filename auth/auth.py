@@ -1,8 +1,8 @@
-import json, requests
+import json
 
 from flask import Flask, request
 
-result = 0
+
 
 app = Flask(__name__)
 
@@ -25,6 +25,7 @@ def credentials():
     else:
         print("0")
         result = 0
+    result = 1
     return json.dumps({"result":result})
 
 if __name__ == "__main__":
