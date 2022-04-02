@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: enter_data_pod
+spec:
+labels:
+  app: enter_data
+  containers:
+    - name: enter_data
+      build: ./enter-data
+      ports:
+        - containerPort: 8000

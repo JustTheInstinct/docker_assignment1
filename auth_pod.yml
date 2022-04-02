@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: auth_pod
+spec:
+labels:
+  app: auth
+  containers:
+    - name: auth
+      build: ./auth
+      ports:
+        - containerPort: 5000

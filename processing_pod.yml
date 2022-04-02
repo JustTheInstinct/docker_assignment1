@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: processing_pod
+spec:
+labels:
+  app: processing
+  containers:
+    - name: processing
+      build: ./processing
+      ports:
+        - containerPort: 8100
