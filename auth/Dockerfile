@@ -1,12 +1,12 @@
 FROM python:latest
 
-EXPOSE 5000
-WORKDIR /
+WORKDIR /home
 
-COPY requirements.txt /
+COPY requirements.txt /home
 RUN apt-get update
 RUN apt-get install -y python3-pip 
 RUN pip install -r requirements.txt
 
-COPY *.py /
-CMD python auth.py
+COPY *.py /home
+EXPOSE 5000
+CMD ["python", "auth.py"]
