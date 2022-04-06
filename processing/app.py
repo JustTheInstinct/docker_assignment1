@@ -23,23 +23,22 @@ logger.setLevel(logging.DEBUG)
 mysql_e = app_config["mysql"]
 mongo_e = app_config["mongodb"]
 
-if not os.path.isfile('data.sqlite'):
-    connection = sqlite3.connect('data.sqlite')
-    c = connection.cursor()
+# if not os.path.isfile('/data/stats.sqlite'):
+#     connection = sqlite3.connect('/data/stats.sqlite')
+#     c = connection.cursor()
 
-    c.execute("""
-                CREATE TABLE values
-                (
-                id INTEGER PRIMARY KEY ASC NOT NULL,
-                info VARCHAR NOT NULL
-                )
-            """)
+#     c.execute('''
+#                 CREATE TABLE IF NOT EXISTS values (
+#                     id INTEGER PRIMARY KEY ASC NOT NULL,
+#                     info VARCHAR NOT NULL
+#                 );
+#             ''')
 
-    connection.commit()
-    connection.close()
+#     connection.commit()
+#     connection.close()
 
 BASE = declarative_base()
-ENGINE = create_engine("mysql+pymysql://root:Passw0rd@mysql:33061/values") # Name of compose file
+ENGINE = create_engine("mysql+pymysql://root:Passw0rd@mysql:3306/values") # Name of compose file
 BASE.metadata.bind = ENGINE
 SESSION = sessionmaker(bind=ENGINE)
 

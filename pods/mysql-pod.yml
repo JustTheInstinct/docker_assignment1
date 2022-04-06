@@ -5,22 +5,22 @@ metadata:
 spec:
   containers:
   - image: mysql:5.7
-    name: mysql_db
+    name: mysql-db
     ports:
       - containerPort: 3306
     env:
       - name: MYSQL_ROOT_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            key: P@ssw0rd
+        value: "Passw0rd"
+          # secretKeyRef:
+          #   key: P@ssw0rd
     volumeMounts:
     - mountPath: /var/lib/mysql
-      name: db_data
+      name: db-data
     resources:
       limits:
         memory: "64Mi"
         cpu: "250m"
   volumes:
-  - name: db_data
+  - name: db-data
     persistentVolumeClaim:
-      claimName: mysql_dbc
+      claimName: mysql-dbc

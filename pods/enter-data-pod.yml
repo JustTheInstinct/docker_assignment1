@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: show-data-pod
+  name: enter-data-pod
 spec:
   containers:
-    - name: show_data
-      image: justtheinstinct/proj_show:latest
+    - name: enter-data
+      image: justtheinstinct/proj_enter:latest
       ports:
-        - containerPort: 9000
+        - containerPort: 8000
       resources:
         limits:
           memory: "64Mi"
