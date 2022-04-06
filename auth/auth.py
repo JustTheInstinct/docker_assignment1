@@ -1,32 +1,27 @@
-import json
-
-from flask import Flask, request
-
-
-
+from flask import Flask
+from flask import request
 app = Flask(__name__)
 
-@app.route('/', method = ['POST'])
+@app.route('/')
 def credentials():
-    global result
-    # Function reads and store JSON dict into variable
-    info = request.get_json()
-
+    username = request.args.get('username')
+    password = request.args.get('password')
+    print( username, password)
+    result = 0
     # Basic authentication
-    if info['username'] == 'Jaspreet' and info['password'] == 'Password':
+    if username == 'Jaspreet' and password == 'Password':
         print("1")
-        result = 1
-    elif info['username'] == 'Jordan' and info['password'] == 'Password':
+        result = '1'
+    elif username == 'Jordan' and password == 'Password':
         print("1")
-        result = 1
-    elif info['username'] == 'Arthur' and info['password'] == 'Password':
+        result = '1'
+    elif username == 'Arthur' and password == 'Password':
         print("1")
-        result = 1
+        result = '1'
     else:
         print("0")
-        result = 0
-    result = 1
-    return json.dumps({"result":result})
+        result = '0'
+    return result
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

@@ -32,13 +32,13 @@ services:
     container_name: project1_auth
     build: ./auth
     ports:
-      - 5000
+      - 5000:5000
   enter-data:
     hostname: enter-data
     container_name: project1_enter
     build : ./enter-data
     ports: 
-      - 8000
+      - 8000:8000
     depends_on:
       - mysql
       - mongodb
@@ -48,7 +48,7 @@ services:
     container_name: project1_show
     build : ./show-data
     ports: 
-      - 9000
+      - 9000:9000
     depends_on:
       - mysql
       - mongodb
@@ -58,7 +58,7 @@ services:
     container_name: project1_processing
     build: ./processing
     ports:
-      - 8100
+      - 8100:8100
     depends_on:
       - mysql
       - mongodb
