@@ -8,3 +8,7 @@ spec:
       image: justtheinstinct/proj_auth:latest
       ports:
         - containerPort: 5000
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "250m"
