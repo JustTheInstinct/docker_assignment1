@@ -24,7 +24,6 @@ mysql_e = app_config["mysql"]
 mongo_e = app_config["mongodb"]
 
 if not os.path.isfile('data.sqlite'):
-    # code for creating the database
     connection = sqlite3.connect('data.sqlite')
     c = connection.cursor()
 
@@ -45,11 +44,9 @@ BASE.metadata.bind = ENGINE
 SESSION = sessionmaker(bind=ENGINE)
 
 MONGO_CLIENT = pymongo.MongoClient("mongodb://mongodb:27017/")
-#MONGO_CLIENT = pymongo.MongoClient("localhost:27017")
 
 def populate():
     mysql_data = get_mysql()
-    #mysql_data = {"info": 22}
     to_mongo(mysql_data)
 
 def get_mysql():

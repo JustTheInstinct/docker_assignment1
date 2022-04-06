@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: enter_data
-      build: ./enter-data
+      build: justtheinstinct/proj_enter:latest
       ports:
         - containerPort: 8000
       resources:

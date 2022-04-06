@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: show_data
-      image: justtheinstinct/proj_enter:latest
+      image: justtheinstinct/proj_result:latest
       ports:
         - containerPort: 9000
       resources:
