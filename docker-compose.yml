@@ -2,6 +2,7 @@ version: '3.3'
 
 services:
   mysql:
+    hostname: mysql
     image: mysql:5.7
     restart: always
     environment:
@@ -11,10 +12,11 @@ services:
       - '33061:3306'
     command: --init-file /init.sql
     volumes:
-      - prj-msdata:/var/lib/mysql
+      - db_data:/var/lib/mysql
       - ./init.sql:/init.sql
 
   mongodb:
+    hostname: mmongodb
     image: mongo:latest
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -23,36 +25,44 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - prj-mongodb:/data/db
+      - prj-mongodb-data:/data/db
   
   auth:
+    hostname: auth
+    container_name: project1_auth
     build: ./auth
     ports:
-      - 5000:5000
+      - 5000
   enter-data:
+    hostname: enter-data
+    container_name: project1_enter
     build : ./enter-data
     ports: 
-      - 8000:8000
+      - 8000
     depends_on:
       - mysql
       - mongodb
   
   show-data:
+    hostname: show-data
+    container_name: project1_show
     build : ./show-data
     ports: 
-      - 9000:9000
+      - 9000
     depends_on:
       - mysql
       - mongodb
    
-  # processing:
-  #   build: ./processing
-  #   ports:
-  #     - 8100:8100
-  #   depends_on:
-  #     - mysql
-  #     - mongodb
+  processing:
+    hostname: processing
+    container_name: project1_processing
+    build: ./processing
+    ports:
+      - 8100
+    depends_on:
+      - mysql
+      - mongodb
 
 volumes:
-  prj-mongodb:
-  prj-msdata:
+  prj-mongodb-data:
+  db_data:

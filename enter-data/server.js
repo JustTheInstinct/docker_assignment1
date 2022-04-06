@@ -14,16 +14,12 @@ const database = mysql.createConnection({
 
 
 function checkauth(username, password){
-    var login_info_uri = 'http://auth:5000?username=jass&password=pass';
-
-//     request(login_info_uri, function (error, response, body) {
-//   console.error('error:', error); // Print the error if one occurred
-//   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-//   console.log('body:', body);
-// });
-
+    var login_info = {'username': username, 'password': password};
     var options = {
-        uri: login_info_uri
+        uri: 'http://auth:5000/',
+        body: login_info,
+        method: 'POST',
+        json: true
     }
     var sendrequest =  request(options)
   
@@ -34,17 +30,15 @@ function checkauth(username, password){
               
             // You can do something with
             // returned data
-            // let result;
-            // result = parsedBody['result'];
-            // console.log("auth function returned: ", result);
-            // return result;
+            let result;
+            result = parsedBody['result'];
+            console.log("auth function returned: ", result);
+            return result;
         })
         .catch(function (err) {
             console.log(err);
         });
-    // return result;
-    
-    return 1;
+    return result;
 
 }
 
@@ -66,23 +60,23 @@ app.post('/login', async (req, res) =>{
     }
 })
 
-// app.post('/input', (req,res) => {
-//     let age = req.body.age;
+app.post('/input', (req,res) => {
+    let age = req.body.age;
 
-//     database.connect(function(err) {
-//         if (err) throw err;
+    database.connect(function(err) {
+        if (err) throw err;
 
-//         console.log("Connected!");
-//         var sql = "INSERT INTO info (words) VALUES (" + age +")";
+        console.log("Connected!");
+        var sql = "INSERT INTO info (words) VALUES (" + age +")";
 
-//         database.query(sql, function (err, result) {
-//           if (err) throw err;
-//           console.log("1 record inserted");
-//         });
-//       });
+        database.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("1 record inserted");
+        });
+      });
 
-//     res.redirect('/input');
-// })
+    res.redirect('/input');
+})
 app.listen(8000, () => {
     console.log("app running on port 8000");
 })
