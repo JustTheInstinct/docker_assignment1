@@ -5,6 +5,10 @@ metadata:
 spec:
   containers:
     - name: processing
-      build: ./processing
+      image: justtheinstinct/proj_processing:latest
       ports:
         - containerPort: 8100
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "250m"

@@ -5,6 +5,10 @@ metadata:
 spec:
   containers:
     - name: show_data
-      build: ./show-data
+      image: justtheinstinct/proj_enter:latest
       ports:
         - containerPort: 9000
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "250m"

@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
     - name: auth
-      build: ./auth
+      image: justtheinstinct/proj_auth:latest
       ports:
         - containerPort: 5000

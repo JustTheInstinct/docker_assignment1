@@ -20,6 +20,10 @@ spec:
     volumeMounts:
       - name: prj-mongo-db-data
         mountPath: /data/db
+    resources:
+      limits:
+        memory: "64Mi"
+        cpu: "250m"
   volumes:
   - name: prj-mongo-db-data
     persistentVolumeClaim:
