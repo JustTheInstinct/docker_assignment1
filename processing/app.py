@@ -1,6 +1,8 @@
 from sched import scheduler
-import yaml, json, connexion, logging.config, logging, sys, swagger_ui_bundle, requests, sqlalchemy, pymongo, hashlib, info, logging#, drop_tables
+import yaml, json, connexion, logging.config, logging, sys, swagger_ui_bundle, requests, sqlalchemy, pymongo, os, sqlite3, logging#, drop_tables
 #import create_tables
+
+from db_table import db_table
 
 from connexion import NoContent
 from sqlalchemy import create_engine
@@ -21,8 +23,24 @@ logger.setLevel(logging.DEBUG)
 mysql_e = app_config["mysql"]
 mongo_e = app_config["mongodb"]
 
+if not os.path.isfile('data.sqlite'):
+    # code for creating the database
+    connection = sqlite3.connect('data.sqlite')
+    c = connection.cursor()
+
+    c.execute("""
+                CREATE TABLE values
+                (
+                id INTEGER PRIMARY KEY ASC NOT NULL,
+                info VARCHAR NOT NULL
+                )
+            """)
+
+    connection.commit()
+    connection.close()
+
 BASE = declarative_base()
-ENGINE = create_engine("mysql+pymysql://Jordan:Password@mysql/data") # Name of compose file
+ENGINE = create_engine("mysql+pymysql://root:Passw0rd@mysql:33061/values") # Name of compose file
 BASE.metadata.bind = ENGINE
 SESSION = sessionmaker(bind=ENGINE)
 
@@ -40,7 +58,7 @@ def get_mysql():
     result = []
 
     # Query info
-    query = session.query(data.info).all()
+    query = session.query(db_table.info).all()
 
     # Gather and append
     for each in query:

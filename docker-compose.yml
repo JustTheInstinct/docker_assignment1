@@ -5,8 +5,8 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: P@ssw0rd
-      MYSQL_DATABASE: data
+      MYSQL_ROOT_PASSWORD: Passw0rd
+      MYSQL_DATABASE: values
     ports:
       - '33061:3306'
     command: --init-file /init.sql
@@ -18,7 +18,7 @@ services:
     image: mongo:latest
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: P@ssw0rd
+      MONGO_INITDB_ROOT_PASSWORD: Passw0rd
       MONGO_INITDB_DATABASE: data
     ports:
       - 27017:27017
