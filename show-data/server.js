@@ -38,7 +38,7 @@ app.post('/login', async (req, res) =>{
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         console.log('body:', body); 
         if(body == 1){
-            res.redirect('/input');
+            res.redirect('/show');
         }
         else{
             res.redirect('/login');
