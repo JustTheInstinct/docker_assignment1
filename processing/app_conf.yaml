@@ -2,7 +2,7 @@ version: 1
 
 mysql:
   user: root
-  password: P@ssw0rd
+  password: Passw0rd
   hostname: localhost
   port:
     - "3306:3306"
@@ -10,7 +10,7 @@ mysql:
 
 mongodb:
   user: root
-  password: P@ssw0rd
+  password: Passw0rd
   hostname: localhost
   port:
     - "27017:27017"
