@@ -2,8 +2,9 @@ const express = require('express');
 const mysql = require('mysql');
 const app = express();
 const path = require('path');
+const request = require('request');
 const bodyParser = require('body-parser');
-const request = require('request-promise');
+
 const database = mysql.createConnection({
     host: 'mysql',
     port: '3306',
@@ -12,35 +13,19 @@ const database = mysql.createConnection({
     database: 'data'
 });
 
+// setTimeout(checkauth, 4000);
+//  function checkauth(username, password){
+    // var login_info_uri = 'http://auth:5000/?username='+username+'&password='+password;
 
-function checkauth(username, password){
-    var login_info = {'username': username, 'password': password};
-    var options = {
-        uri: 'http://auth:5000/',
-        body: login_info,
-        method: 'POST',
-        json: true
-    }
-    var sendrequest =  request(options)
-  
-        // The parsedBody contains the data
-        // sent back from the Flask server 
-        .then(function (parsedBody) {
-            console.log(parsedBody);
-              
-            // You can do something with
-            // returned data
-            let result;
-            result = parsedBody['result'];
-            console.log("auth function returned: ", result);
-            return result;
-        })
-        .catch(function (err) {
-            console.log(err);
-        });
-    return result;
+//      request(login_info_uri, function (error, response, body) {
+//         console.error('error:', error);
+//         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+//         console.log('body:', body); 
+//     });
+//     return result;
+//  }
 
-}
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -51,13 +36,20 @@ app.get('/input', (req,res) => res.sendFile(path.join(__dirname + '/views/input.
 app.post('/login', async (req, res) =>{
     let username = req.body.username;
     let password = req.body.password;
+    var login_info_uri = 'http://auth:5000/?username='+username+'&password='+password;
 
-    if(checkauth(username,password) == 1){
-        res.redirect('/input');
-    }
-    else{
-        res.redirect('/login');
-    }
+    request(login_info_uri, function (error, response, body) {
+        console.error('error:', error);
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        console.log('body:', body); 
+        if(body == 1){
+            res.redirect('/input');
+        }
+        else{
+            res.redirect('/login');
+        }
+    });
+    
 })
 
 app.post('/input', (req,res) => {
