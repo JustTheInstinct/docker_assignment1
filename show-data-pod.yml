@@ -1,10 +1,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: show_data_pod
+  name: show-data-pod
 spec:
-labels:
-  app: show_data
   containers:
     - name: show_data
       build: ./show-data

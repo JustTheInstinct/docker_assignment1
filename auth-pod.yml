@@ -1,10 +1,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: auth_pod
+  name: auth-pod
 spec:
-labels:
-  app: auth
   containers:
     - name: auth
       build: ./auth

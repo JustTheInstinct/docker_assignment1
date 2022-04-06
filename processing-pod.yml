@@ -1,10 +1,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: processing_pod
+  name: processing-pod
 spec:
-labels:
-  app: processing
   containers:
     - name: processing
       build: ./processing
