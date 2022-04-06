@@ -6,21 +6,15 @@ spec:
   containers:
   - image: mysql:5.7
     name: mysql-db
-    ports:
-      - containerPort: 3306
     env:
-      - name: MYSQL_ROOT_PASSWORD
-        value: "Passw0rd"
-          # secretKeyRef:
-          #   key: P@ssw0rd
+    - name: MYSQL_ROOT_PASSWORD
+      value: Passw0rd
+    ports:
+    - containerPort: 3306
     volumeMounts:
-    - mountPath: /var/lib/mysql
-      name: db-data
-    resources:
-      limits:
-        memory: "64Mi"
-        cpu: "250m"
+    - name: mysql-persistent-storage
+      mountPath: /var/lib/mysql
   volumes:
-  - name: db-data
+  - name: mysql-persistent-storage
     persistentVolumeClaim:
       claimName: mysql-dbc

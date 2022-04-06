@@ -5,26 +5,18 @@ metadata:
 spec:
   containers:
   - image: mongo:latest
-    name: mongodb
-    ports:
-      - containerPort: 27017
+    name: mongodb-pod
     env:
-      - name: MONGO_INITDB_ROOT_USERNAME
-        value: "root"
-          # secretKeyRef:
-          #   key: root
-      - name: MONGO_INITDB_ROOT_PASSWORD
-        value: "Passw0rd"
-          # secretKeyRef:
-          #   key: P@ssw0rd
+    - name: MONGO_INITDB_ROOT_USERNAME
+      value: root
+    - name: MONGO_INITDB_ROOT_PASSWORD
+      value: Passw0rd
+    ports:
+    - containerPort: 3306
     volumeMounts:
-      - name: prj-mongo-db-data
-        mountPath: /data/db
-    resources:
-      limits:
-        memory: "64Mi"
-        cpu: "250m"
+    - name: mongo-persistent-storage
+      mountPath: /data/db
   volumes:
-  - name: prj-mongo-db-data
+  - name: mongo-persistent-storage
     persistentVolumeClaim:
-      claimName: mongo_dbc
+      claimName: mongo-dbc
